@@ -60,6 +60,7 @@ KLIPPERSCREEN_REPO=https://github.com/jordanruthe/KlipperScreen.git
 #branches
 BRANCH_SCURVE_SMOOTHING=dmbutyugin/scurve-smoothing
 BRANCH_SCURVE_SHAPING=dmbutyugin/scurve-shaping
+BRANCH_PYTHON3=
 
 ### set some messages
 warn_msg(){

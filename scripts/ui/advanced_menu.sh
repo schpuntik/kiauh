@@ -107,10 +107,11 @@ switch_ui(){
   echo -e "|                                                       | "
   echo -e "|  KevinOConnor:                                        | "
   echo -e "|  1) [--> master]                                      | "
+  echo -e "|  2) [--> master]                                      | "
   echo -e "|                                                       | "
   echo -e "|  dmbutyugin:                                          | "
-  echo -e "|  2) [--> scurve-shaping]                              | "
-  echo -e "|  3) [--> scurve-smoothing]                            | "
+  echo -e "|  3) [--> scurve-shaping]                              | "
+  echo -e "|  4) [--> scurve-smoothing]                            | "
   quit_footer
 }
 
@@ -139,11 +140,18 @@ switch_menu(){
         3)
           clear
           print_header
-          switch_to_scurve_smoothing
+          switch_to_python3
           read_branch
           print_msg && clear_msg
           switch_ui;;
         4)
+          clear
+          print_header
+          switch_to_scurve_smoothing
+          read_branch
+          print_msg && clear_msg
+          switch_ui;;
+        5)
           clear
           print_header
           switch_to_moonraker
