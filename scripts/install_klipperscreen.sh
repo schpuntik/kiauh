@@ -60,7 +60,7 @@ get_user_selections_klipperscreen(){
 }
 
 klipperscreen_setup(){
-  dep=(wget curl unzip dfu-util)
+  dep=(wget curl unzip dfu-util python3-pip)
   dependency_check
   status_msg "Downloading KlipperScreen ..."
   #force remove existing KlipperScreen dir
