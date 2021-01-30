@@ -107,7 +107,7 @@ switch_ui(){
   echo -e "|                                                       | "
   echo -e "|  KevinOConnor:                                        | "
   echo -e "|  1) [--> master]                                      | "
-  echo -e "|  2) [--> master]                                      | "
+  echo -e "|  2) [--> python3]                                     | "
   echo -e "|                                                       | "
   echo -e "|  dmbutyugin:                                          | "
   echo -e "|  3) [--> scurve-shaping]                              | "
@@ -133,14 +133,14 @@ switch_menu(){
         2)
           clear
           print_header
-          switch_to_scurve_shaping
+          switch_to_python3
           read_branch
           print_msg && clear_msg
           switch_ui;;
         3)
           clear
           print_header
-          switch_to_python3
+          switch_to_scurve_shaping
           read_branch
           print_msg && clear_msg
           switch_ui;;
