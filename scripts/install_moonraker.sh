@@ -272,6 +272,7 @@ moonraker_setup(){
   patch_klipper_sysfile "moonraker"
   #re-run printer.cfg location function to read the new path for the printer.cfg
   locate_printer_cfg
+  $MOONRAKER_DIR/scripts/sudo_fix.sh
   echo; ok_msg "Moonraker successfully installed!"
 }
 
