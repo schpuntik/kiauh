@@ -10,6 +10,17 @@ kiauh_status(){
   fi
 }
 
+check_system_updates(){
+  SYS_UPDATE=$(apt list --upgradeable 2>/dev/null | sed "1d")
+  if [ ! -z "$SYS_UPDATE" ]; then
+    SYS_UPDATE_AVAIL="true"
+    DISPLAY_SYS_UPDATE="${yellow}System upgrade available!${default}"
+  else
+    SYS_UPDATE_AVAIL="false"
+    DISPLAY_SYS_UPDATE="${green}System up to date!       ${default}"
+  fi
+}
+
 klipper_status(){
   kcount=0
   klipper_data=(
@@ -357,16 +368,16 @@ compare_dwc2_versions(){
   read_local_dwc2_version && read_remote_dwc2_version
   if [[ $DWC2_VER_FOUND = "true" ]] && [[ $DWC2_LOCAL_VER == $DWC2_REMOTE_VER ]]; then
     #printf fits the string for displaying it in the ui to a total char length of 12
-    DWC2_LOCAL_VER="${green}$(printf "v%-11s" "$DWC2_LOCAL_VER")${default}"
-    DWC2_REMOTE_VER="${green}$(printf "v%-11s" "$DWC2_REMOTE_VER")${default}"
+    DWC2_LOCAL_VER="${green}$(printf "%-12s" "$DWC2_LOCAL_VER")${default}"
+    DWC2_REMOTE_VER="${green}$(printf "%-12s" "$DWC2_REMOTE_VER")${default}"
   elif [[ $DWC2_VER_FOUND = "true" ]] && [[ $DWC2_LOCAL_VER != $DWC2_REMOTE_VER ]]; then
-    DWC2_LOCAL_VER="${yellow}$(printf "v%-11s" "$DWC2_LOCAL_VER")${default}"
-    DWC2_REMOTE_VER="${green}$(printf "v%-11s" "$DWC2_REMOTE_VER")${default}"
+    DWC2_LOCAL_VER="${yellow}$(printf "%-12s" "$DWC2_LOCAL_VER")${default}"
+    DWC2_REMOTE_VER="${green}$(printf "%-12s" "$DWC2_REMOTE_VER")${default}"
     # set flag for the multi update function
     DWC2_UPDATE_AVAIL="true" && update_arr+=(update_dwc2)
   else
     DWC2_LOCAL_VER=$NONE
-    DWC2_REMOTE_VER="${green}$(printf "v%-11s" "$DWC2_REMOTE_VER")${default}"
+    DWC2_REMOTE_VER="${green}$(printf "%-12s" "$DWC2_REMOTE_VER")${default}"
     DWC2_UPDATE_AVAIL="false"
   fi
 }
@@ -514,6 +525,7 @@ NONE="${red}$(printf "%-12s" "--------")${default}"
 
 ui_print_versions(){
   unset update_arr
+  check_system_updates
   compare_klipper_versions
   compare_dwc2fk_versions
   compare_dwc2_versions
